@@ -26,19 +26,18 @@ public class Store {
 	 * totalNumberOfSales and totalSalesValue accordingly, and returns true.
 	 * Otherwise, it returns false.
 	 */
-	public boolean makeSale(int itemID, int quantity, java.time.LocalDate sellDate) {
+	public Boolean makeSale(int itemID, int quantity, java.time.LocalDate sellDate) {
 		Item item = getItemByID(itemID);
 		if (item == null) {
 			return false;
 		} else {
-			double value=item.sell(quantity, sellDate);
-			if(value>0) {
+			double value = item.sell(quantity, sellDate);
+			if (value > 0) {
 				totalNumberOfSales++;
 				totalSalesValue++;
 				return true;
-				
-			}
-			else {
+
+			} else {
 				return false;
 			}
 
@@ -51,7 +50,11 @@ public class Store {
 	 * It then returns this string,
 	 */
 	public String getInventoryString() {
-
+		String x = "";
+		for (int i = 0; i < inventory.size(); i++) {
+			x = x + "\n" + item.toString() + "\n";
+		}
+		return x;
 	}
 
 	/*
@@ -69,7 +72,7 @@ public class Store {
 	 * if an item exists in the inventory before making a sale.
 	 */
 	public Item checkForItem(int itemID) {
-		
+
 	}
 	/*
 	 * getItemByID which returns Item and takes an int called itemID. It iterates
@@ -79,7 +82,13 @@ public class Store {
 	 */
 
 	public int getItemByID(int itemID) {
-
+		Item item=null;
+		for(int i=0;i<inventory.size();i++) {
+			if(i.getItemID()==itemID) {
+				item = i;
+			}
+		}
+		return item;
 	}
 
 }
